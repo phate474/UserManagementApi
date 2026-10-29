@@ -1,0 +1,46 @@
+@UserManagementAPI_HostAddress = http://localhost:5068
+
+### Retrieve all users
+GET {{UserManagementAPI_HostAddress}}/api/users
+Accept: application/json
+
+### Create a user
+POST {{UserManagementAPI_HostAddress}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Ada Lovelace",
+  "email": "ada.lovelace@example.com"
+}
+
+### Retrieve the created user
+GET {{UserManagementAPI_HostAddress}}/api/users/1
+Accept: application/json
+
+### Update the created user
+PUT {{UserManagementAPI_HostAddress}}/api/users/1
+Content-Type: application/json
+
+{
+  "name": "Ada Byron",
+  "email": "ada.byron@example.com"
+}
+
+### Retrieve a user that does not exist (404)
+GET {{UserManagementAPI_HostAddress}}/api/users/9999
+Accept: application/json
+
+### Update a user that does not exist (404)
+PUT {{UserManagementAPI_HostAddress}}/api/users/9999
+Content-Type: application/json
+
+{
+  "name": "Missing User",
+  "email": "missing.user@example.com"
+}
+
+### Delete the created user
+DELETE {{UserManagementAPI_HostAddress}}/api/users/1
+
+### Delete a user that does not exist (404)
+DELETE {{UserManagementAPI_HostAddress}}/api/users/9999
