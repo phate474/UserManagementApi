@@ -1,12 +1,19 @@
 @UserManagementAPI_HostAddress = http://localhost:5068
+@token = replace-with-a-valid-jwt
+
+### Request without a token (expected: 401)
+GET {{UserManagementAPI_HostAddress}}/api/users
+Accept: application/json
 
 ### Retrieve all users
 GET {{UserManagementAPI_HostAddress}}/api/users
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ### Create a user
 POST {{UserManagementAPI_HostAddress}}/api/users
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "name": "Ada Lovelace",
@@ -16,10 +23,12 @@ Content-Type: application/json
 ### Retrieve the created user
 GET {{UserManagementAPI_HostAddress}}/api/users/1
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ### Update the created user
 PUT {{UserManagementAPI_HostAddress}}/api/users/1
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "name": "Ada Byron",
@@ -29,10 +38,12 @@ Content-Type: application/json
 ### Retrieve a user that does not exist (404)
 GET {{UserManagementAPI_HostAddress}}/api/users/9999
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ### Update a user that does not exist (404)
 PUT {{UserManagementAPI_HostAddress}}/api/users/9999
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "name": "Missing User",
@@ -41,6 +52,8 @@ Content-Type: application/json
 
 ### Delete the created user
 DELETE {{UserManagementAPI_HostAddress}}/api/users/1
+Authorization: Bearer {{token}}
 
 ### Delete a user that does not exist (404)
 DELETE {{UserManagementAPI_HostAddress}}/api/users/9999
+Authorization: Bearer {{token}}
