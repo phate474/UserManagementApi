@@ -1,6 +1,7 @@
 using System.Collections.Concurrent;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http.HttpResults;
+using NSwag.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwaggerUi(settings =>
+    {
+        settings.DocumentTitle = "User Management API";
+        settings.SwaggerRoutes.Add(
+            new SwaggerUiRoute("User Management API", "/openapi/v1.json"));
+    });
 }
 
 app.UseExceptionHandler();
